@@ -1,0 +1,13 @@
+(footprint "40mm Fan, 2 Hole" (version 20221018) (generator pcbnew)
+  (layer "F.Cu")
+  (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS") hide
+      (effects (font (size 1 1) (thickness 0.1)))
+    (tstamp 93a9a223-44d8-46a9-8823-130be2b6133a)
+  )
+  (fp_text value "40mm Fan, 2 Hole" (at 0 1 unlocked) (layer "F.Fab") hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp d86d8f99-d0f6-4e78-bdec-2a7befa48647)
+  )
+  (pad "1" thru_hole circle (at -16 16) (size 12 12) (drill 12) (layers "*.Cu" "*.Mask") (tstamp bd5dfbf2-9587-4c8e-8996-3bfc47507bd2))
+  (pad "1" thru_hole circle (at 16 -16) (size 12 12) (drill 12) (layers "*.Cu" "*.Mask") (tstamp 2e4add91-3890-40a1-a715-15a3a2346940))
+)

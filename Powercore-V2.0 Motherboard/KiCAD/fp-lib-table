@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Powercore-V2.0_Artwork")(type "KiCad")(uri "${KIPRJMOD}/Powercore-V2.0 Artwork/Powercore-V2.0_Artwork.pretty")(options "")(descr ""))
+)

@@ -34,9 +34,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 1.15316,
-          "height": 1.15316,
-          "width": 1.15316
+          "drill": 2.1,
+          "height": 2.1,
+          "width": 2.1
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -484,7 +484,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "CC_Charger.kicad_pro",
+    "filename": "POWERCORE-V2.0_MOTHERBOARD.kicad_pro",
     "version": 1
   },
   "net_settings": {

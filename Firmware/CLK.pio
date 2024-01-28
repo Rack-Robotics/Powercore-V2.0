@@ -1,0 +1,36 @@
+.program CLK
+.side_set 1 opt
+
+    irq clear 0     side 1 ; Set IRQ for other signals to reference off of
+    mov y, isr             ; ISR contains PWM period. Y used as counter.
+    irq 0
+countloop:
+    jmp x!=y noset         ; Set pin high if X == Y, keep the two paths length matched
+    jmp skip        side 0
+noset:
+    nop                    ; Single dummy cycle to keep the two paths the same length
+skip:
+    jmp y-- countloop      ; Loop until Y hits 0, then pull a restart the counter
+
+
+
+% c-sdk {
+static inline void CLK_program_init(PIO pio, uint sm, uint offset, uint pin) {
+    pio_sm_config c = CLK_program_get_default_config(offset);
+
+    // Map the state machine's OUT pin group to one pin, namely the `pin`
+    // parameter to this function.
+    sm_config_set_out_pins(&c, pin, 1);
+    // Set this pin's GPIO function (connect PIO to the pad)
+    pio_gpio_init(pio, pin);
+    // Set the pin direction to output at the PIO
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+
+    sm_config_set_sideset_pins(&c, pin);
+
+    // Load our configuration, and jump to the start of the program
+    pio_sm_init(pio, sm, offset, &c);
+    // Set the state machine running
+    //pio_sm_set_enabled(pio, sm, true);
+}
+%}

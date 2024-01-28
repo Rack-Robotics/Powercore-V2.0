@@ -1,0 +1,40 @@
+.program TIMING
+.side_set 1 opt
+
+offStart:
+    wait 0 irq 0   side 0       ; Wait for clock rising edge 
+
+    mov y, isr                  ; Wait time stored in ISR, Y register used as counter
+
+waitloop:
+    jmp !y onStart              ; When the timer runs out turn on the output pin and begin on time loop
+    jmp y-- waitloop            ; If the off time  hasn't elapsed, keep looping
+
+onStart:
+    mov y, osr      side 1      ; On time stored in OSR, Y register used as a counter
+
+onloop:
+    jmp !y offStart             ; When the timer runs out turn off the output pin and wait for clock edge
+    jmp y-- onloop              ; If the on time hasn't yet elapsed, keep looping
+
+
+% c-sdk {
+static inline void TIMING_program_init(PIO pio, uint sm, uint offset, uint pin) {
+    pio_sm_config c = TIMING_program_get_default_config(offset);
+
+    // Map the state machine's OUT pin group to one pin, namely the `pin`
+    // parameter to this function.
+    sm_config_set_out_pins(&c, pin, 1);
+    // Set this pin's GPIO function (connect PIO to the pad)
+    pio_gpio_init(pio, pin);
+    // Set the pin direction to output at the PIO
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 1, true);
+
+    sm_config_set_sideset_pins(&c, pin);
+
+    // Load our configuration, and jump to the start of the program
+    pio_sm_init(pio, sm, offset, &c);
+    // Set the state machine running
+    //pio_sm_set_enabled(pio, sm, true);
+}
+%}

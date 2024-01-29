@@ -68,11 +68,15 @@ void VSENSE_TRIP_callback(void) {
 
 }
 
+void disable_gate_driver() {
+    gpio_put(CC_CHARGER_EN_PIN, false);
+}
+
 void disable_CC_timing() {
 
     gpio_put(DIODE_ON_PIN, false);                                                              //Turn off ideal diode
 
-    gpio_put(CC_CHARGER_EN_PIN, false);                                                         //Disable CC Charger gate driver
+    // gpio_put(CC_CHARGER_EN_PIN, false);                                                         //Disable CC Charger gate driver
 
     pio_sm_set_enabled(pio, sm_clk, false);                                                     //Disable CC Charger Clock
     pio_sm_exec(pio, sm_clk, pio_encode_nop() | pio_encode_sideset_opt(1, 0));                  //Set Clock output to 0

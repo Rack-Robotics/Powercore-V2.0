@@ -11,9 +11,9 @@
 
 //OUTPUT PULSE PARAMETERS (times in usecs)
 #define OUTPUT_ON_TIME 20
-#define OUTPUT_OFF_TIME 80
+#define OUTPUT_OFF_TIME 70
 #define ISO_PULSE false
-#define CAP_VOLTAGE_SETPOINT 65         //Don't set higher than 65
+#define CAP_VOLTAGE_SETPOINT 70         //Don't set higher than 65
 
 //CC Charger Parameters (don't change unless you know what you're doing)
 #define CHARGER_CURRENT 850
@@ -21,24 +21,27 @@
 //Math stuff DO NOT EDIT
 #define CAP_VOLTAGE_PWM_LEVEL CAP_VOLTAGE_SETPOINT * 303 / 48
 
-bool tripped = false;
+bool os = false;
 
-void cut_on_off_irq(void) {
-    
-    if(gpio_get_irq_event_mask(CUT_nEN_PIN) & GPIO_IRQ_EDGE_FALL) {
+bool cut_on_off_irq(repeating_timer_t *rt) {
 
-        gpio_acknowledge_irq(CUT_nEN_PIN, GPIO_IRQ_EDGE_FALL);
-
+    if(!gpio_get(CUT_nEN_PIN) && !cutting_enabled) {
         cutting_enabled = true;
         begin_output_pulses(OUTPUT_ON_TIME, OUTPUT_OFF_TIME, ISO_PULSE);
+    } else if(gpio_get(CUT_nEN_PIN)) {
+        cutting_enabled == false;
     }
 
-    if(gpio_get_irq_event_mask(CUT_nEN_PIN) & GPIO_IRQ_EDGE_RISE) {
-
-        gpio_acknowledge_irq(CUT_nEN_PIN, GPIO_IRQ_EDGE_RISE);
-
+    if(gpio_get(CUT_nEN_PIN)) {
         cutting_enabled = false;
+        disable_gate_driver();
     }
+
+    gpio_put(1, os);
+    os = !os;
+
+    return true;
+
 }
 
 void default_gpio_callback(uint gpio, uint32_t event_mask) {
@@ -64,21 +67,20 @@ int main() {
 
     gpio_init(CUT_nEN_PIN);
     gpio_set_dir(CUT_nEN_PIN, GPIO_IN);
-    gpio_set_pulls(CUT_nEN_PIN, true, false);
+    gpio_set_pulls(CUT_nEN_PIN, false, false);
 
     gpio_init(1);
     gpio_set_dir(1, GPIO_OUT);
-    gpio_put(1, false);
 
     irq_set_enabled(IO_IRQ_BANK0, true);
 
     sleep_ms(1000);
 
-    gpio_set_irq_enabled(CUT_nEN_PIN, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL, true);
-    gpio_add_raw_irq_handler(CUT_nEN_PIN, &cut_on_off_irq);
+    repeating_timer_t timer;
+
+    add_repeating_timer_ms(100, cut_on_off_irq, NULL, &timer);
 
     while (true) {
-        
         // sleep_us(10);
         // gpio_put(3, true);
         // sleep_us(10);

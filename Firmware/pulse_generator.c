@@ -8,6 +8,8 @@
 #define SPARK_THRESHOLD_PWM_PIN 14
 #define SHORT_ALERT_PIN 1
 
+#define PULSE_COUNTER_PWM_PIN 24
+
 #define SHORT_THRESHOLD 410
 
 bool cutting_enabled = false;
@@ -128,8 +130,12 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
     pulse_history[7] = pulse_history[7] >> 1;                                       //Binary shift the last value, done outside the for loop because nowhere to pull the MSB from
 
-    if(output_state == SPARK_ON)                                                    //If successful spark then load a 1 into the MSB of the shift register
+    if(output_state == SPARK_ON) {                                                  //If successful spark then load a 1 into the MSB of the shift register and increment pulse counter
+
         pulse_history[7] = pulse_history[7] + (1 << 31);
+
+        pulse_counter += 1;
+    }
 
     output_state = SPARK_OFF;                                                       //Set state machine state to SPARK_OFF
 
@@ -140,6 +146,8 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
         disable_gate_driver();
         gpio_put(SHORT_ALERT_PIN, true);
     }
+
+    pwm_set_gpio_level(PULSE_COUNTER_PWM_PIN, pulse_counter<<2);
 
     return 0;
 
@@ -152,6 +160,10 @@ void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse) {
     pulse_off_time = off_time;
     pulse_timeout_time = pulse_on_time / 2;
     iso_pulse_mode = iso_pulse;
+
+    for (int i = 0; i < 7; i++)
+        pulse_history[i] = 0;
+    pulse_counter = 0;
 
     begin_off_time(-1, NULL);
 
@@ -173,5 +185,9 @@ void pulse_generator_init(uint32_t trip_current) {
     pwm_set_wrap(pwm_gpio_to_slice_num(SPARK_THRESHOLD_PWM_PIN), 1000);
 
     pwm_set_gpio_level(SPARK_THRESHOLD_PWM_PIN, trip_current);
+
+    gpio_set_function(PULSE_COUNTER_PWM_PIN, GPIO_FUNC_PWM);
+    pwm_set_wrap(pwm_gpio_to_slice_num(PULSE_COUNTER_PWM_PIN), 2500);
+
 
 }

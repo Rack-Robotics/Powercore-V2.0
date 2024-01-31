@@ -5,6 +5,11 @@
 
 extern bool caps_charged;
 
+/*! \brief Disable Constant Current Charger Gate Driver, turns off charger (timing signals still on) prevents ringing on VS_DIODE
+    \ingroup CC_Charger
+*/
+void disable_gate_driver();
+
 /*! \brief Disable Constant Current Charger timing outputs, effectively turns off CC charger
     \ingroup CC_Charger
 */

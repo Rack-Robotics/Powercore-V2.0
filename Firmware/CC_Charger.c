@@ -76,8 +76,6 @@ void disable_CC_timing() {
 
     gpio_put(DIODE_ON_PIN, false);                                                              //Turn off ideal diode
 
-    // gpio_put(CC_CHARGER_EN_PIN, false);                                                         //Disable CC Charger gate driver
-
     pio_sm_set_enabled(pio, sm_clk, false);                                                     //Disable CC Charger Clock
     pio_sm_exec(pio, sm_clk, pio_encode_nop() | pio_encode_sideset_opt(1, 0));                  //Set Clock output to 0
     pio_sm_exec(pio, sm_clk, pio_encode_irq_set(false, 0));
@@ -194,14 +192,13 @@ void CC_Charger_init(int charger_current, int cap_voltage) {
     //Setup PWM -> Analog pins
     gpio_set_function(CC_I_LIMIT_PIN, GPIO_FUNC_PWM);
     gpio_set_function(V_CAP_SET_PIN, GPIO_FUNC_PWM);
-    gpio_set_function(3, GPIO_FUNC_PWM);
 
     uint v_i_set_pwm_slice = pwm_gpio_to_slice_num(V_CAP_SET_PIN);
 
     pwm_set_wrap(v_i_set_pwm_slice, 1000);
 
-    pwm_set_chan_level(v_i_set_pwm_slice, pwm_gpio_to_channel(CC_I_LIMIT_PIN), charger_current);
-    pwm_set_chan_level(v_i_set_pwm_slice, pwm_gpio_to_channel(V_CAP_SET_PIN), cap_voltage);
+    pwm_set_gpio_level(CC_I_LIMIT_PIN, charger_current);
+    pwm_set_gpio_level(V_CAP_SET_PIN, cap_voltage);
 
     pwm_set_enabled(v_i_set_pwm_slice, true);
 
@@ -217,7 +214,8 @@ void CC_Charger_init(int charger_current, int cap_voltage) {
     uint bias_pwm_slice_num = pwm_gpio_to_slice_num(GATE_BIAS_CLK_PIN);
     pwm_set_wrap(bias_pwm_slice_num, 2500);
 
-    pwm_set_chan_level(bias_pwm_slice_num, pwm_gpio_to_channel(GATE_BIAS_CLK_PIN), 1250);
+    pwm_set_gpio_level(GATE_BIAS_CLK_PIN, 1250);
 
     pwm_set_enabled(bias_pwm_slice_num, true);
+
 }

@@ -4,7 +4,12 @@
 #include "pico/stdlib.h"
 
 extern bool cutting_enabled;
-extern bool off_time_insufficient;
+extern bool short_tripped;
+
+/*! \brief Turn off the short alert board output
+    \ingroup pulse_generator
+*/
+void short_alert_off();
 
 /*! \brief Start the EDM machine, ie, begin cutting
     \ingroup pulse_generator

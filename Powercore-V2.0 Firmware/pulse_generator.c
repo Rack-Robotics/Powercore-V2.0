@@ -34,6 +34,8 @@ alarm_id_t timeout_alarm_id;
 uint32_t pulse_history[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 uint32_t pulse_counter = 0;
 
+bool tracker = false;
+
 //Prototype functions
 int64_t begin_off_time(alarm_id_t id, void *user_data);
 
@@ -82,7 +84,6 @@ int64_t begin_on_time(alarm_id_t id, void *user_data){
         output_state = WAITING_FOR_IGNITION;                                        //Update pulse generator state
 
         gpio_set_irq_enabled(OUTPUT_CURRENT_TRIP_PIN, GPIO_IRQ_EDGE_RISE, true);    //Configure detection of the spark
-        gpio_add_raw_irq_handler(OUTPUT_CURRENT_TRIP_PIN, &output_current_trip_irq);
 
         if(iso_pulse_mode) {                                                        //Check pulse mode is iso-pulse
             
@@ -120,11 +121,11 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
     add_alarm_in_us(15, change_CC_timing, NULL, true);                              //Setup the alarm to correct CC charger timing
     add_alarm_in_us(pulse_off_time-11, begin_on_time, NULL, true);                  //Setup the alarm to turn on the output MOSFET after the off time
 
-    pulse_counter -= pulse_history[0] & 1;                                          //Subtract the 512th pulse state from the counter
+    pulse_counter -= pulse_history[0] & 0x1;                                          //Subtract the 512th pulse state from the counter
 
     for(int i = 0; i < 7; i++) {                                                        
 
-        pulse_history[i] = ((pulse_history[i+1] & 1) << 31) + pulse_history[i] >> 1 ;   //Binary shift the whole array (left shift each int and load in the first bit of the one above it)
+        pulse_history[i] = ((pulse_history[i+1] & 0x1) << 31) + pulse_history[i] >> 1 ;   //Binary shift the whole array (left shift each int and load in the first bit of the one above it)
 
     }
 
@@ -135,6 +136,7 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
         pulse_history[7] = pulse_history[7] + (1 << 31);
 
         pulse_counter += 1;
+
     }
 
     output_state = SPARK_OFF;                                                       //Set state machine state to SPARK_OFF
@@ -153,6 +155,21 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
 }
 
+int64_t first_off_time(){
+
+    gpio_put(OUTPUT_EN_PIN, false);                                                 //Turn off output MOSFET
+
+    gpio_set_irq_enabled(OUTPUT_CURRENT_TRIP_PIN, GPIO_IRQ_EDGE_RISE, false);       //Disable the ignition sense irq
+
+    LIMIT_set_timing(97, 7, false);                                                 //Limit CC Charger PWM duty cycle to avoid inrush (was 97)
+
+    enable_CC_timing();                                                             //Start CC Charger
+
+    add_alarm_in_us(15, change_CC_timing, NULL, true);                              //Setup the alarm to correct CC charger timing
+    add_alarm_in_us(pulse_off_time-11, begin_on_time, NULL, true);                  //Setup the alarm to turn on the output MOSFET after the off time
+
+}
+
 void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse) {
 
     //Load in the pulse parameters
@@ -165,7 +182,7 @@ void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse) {
         pulse_history[i] = 0;
     pulse_counter = 0;
 
-    begin_off_time(-1, NULL);
+    first_off_time();
 
 }
 
@@ -186,8 +203,14 @@ void pulse_generator_init(uint32_t trip_current) {
 
     pwm_set_gpio_level(SPARK_THRESHOLD_PWM_PIN, trip_current);
 
+    pwm_set_enabled(pwm_gpio_to_slice_num(SPARK_THRESHOLD_PWM_PIN), true);
+
     gpio_set_function(PULSE_COUNTER_PWM_PIN, GPIO_FUNC_PWM);
     pwm_set_wrap(pwm_gpio_to_slice_num(PULSE_COUNTER_PWM_PIN), 2500);
+
+    pwm_set_enabled(pwm_gpio_to_slice_num(PULSE_COUNTER_PWM_PIN), true);
+
+    gpio_add_raw_irq_handler(OUTPUT_CURRENT_TRIP_PIN, &output_current_trip_irq);
 
 
 }

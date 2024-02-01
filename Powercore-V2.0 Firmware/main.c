@@ -39,9 +39,9 @@ bool cut_on_off_irq(repeating_timer_t *rt) {
             cutting_enabled = true;
             begin_output_pulses(OUTPUT_ON_TIME, OUTPUT_OFF_TIME, ISO_PULSE);
 
-        } else if(gpio_get(CUT_nEN_PIN)) {
+        } else if(gpio_get(CUT_nEN_PIN)) { 
 
-            cutting_enabled == false;
+            cutting_enabled = false;
             disable_gate_driver();
 
         }
@@ -66,7 +66,7 @@ int main() {
 
     CC_Charger_init(CHARGER_CURRENT, CAP_VOLTAGE_PWM_LEVEL);                                //Setup the CC Charger Outputs
 
-    pulse_generator_init(120);                                                               //Setup Pulse generator
+    pulse_generator_init(70);                                                               //Setup Pulse generator
 
     gpio_init(CUT_nEN_PIN);
     gpio_set_dir(CUT_nEN_PIN, GPIO_IN);

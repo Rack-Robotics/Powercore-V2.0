@@ -31,7 +31,7 @@ uint32_t pulse_timeout_time = 0; //time in us
 alarm_id_t timeout_alarm_id;
 
 //Pulse history tracking (512 cycles, 1 bit per cycle)
-uint32_t pulse_history[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+uint32_t pulse_history[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint32_t pulse_counter = 0;
 
 bool tracker = false;
@@ -121,19 +121,19 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
     add_alarm_in_us(15, change_CC_timing, NULL, true);                              //Setup the alarm to correct CC charger timing
     add_alarm_in_us(pulse_off_time-11, begin_on_time, NULL, true);                  //Setup the alarm to turn on the output MOSFET after the off time
 
-    pulse_counter -= pulse_history[0] & 0x1;                                          //Subtract the 512th pulse state from the counter
+    pulse_counter -= pulse_history[0] & (uint32_t)0x1;                                          //Subtract the 512th pulse state from the counter
 
-    for(int i = 0; i < 7; i++) {                                                        
+    for(int i = 0; i < 15; i++) {                                                        
 
-        pulse_history[i] = ((pulse_history[i+1] & 0x1) << 31) + pulse_history[i] >> 1 ;   //Binary shift the whole array (left shift each int and load in the first bit of the one above it)
+        pulse_history[i] = ((pulse_history[i+1] & (uint32_t)0x1) << 31) + (pulse_history[i] >> 1);   //Binary shift the whole array (left shift each int and load in the first bit of the one above it)
 
     }
 
-    pulse_history[7] = pulse_history[7] >> 1;                                       //Binary shift the last value, done outside the for loop because nowhere to pull the MSB from
+    pulse_history[15] = pulse_history[15] >> 1;                                       //Binary shift the last value, done outside the for loop because nowhere to pull the MSB from
 
     if(output_state == SPARK_ON) {                                                  //If successful spark then load a 1 into the MSB of the shift register and increment pulse counter
 
-        pulse_history[7] = pulse_history[7] + (1 << 31);
+        pulse_history[15] = pulse_history[15] + (1 << 31);
 
         pulse_counter += 1;
 
@@ -178,7 +178,7 @@ void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse) {
     pulse_timeout_time = pulse_on_time / 2;
     iso_pulse_mode = iso_pulse;
 
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 15; i++)
         pulse_history[i] = 0;
     pulse_counter = 0;
 

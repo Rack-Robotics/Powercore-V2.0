@@ -1,4 +1,4 @@
-(footprint "powercore_version_2.0_graphics_4" (version 20221018) (generator pcbnew)
+(footprint "powercore_version_2.0_graphic_4" (version 20221018) (generator pcbnew)
   (layer "F.Cu")
   (attr smd)
   (fp_text reference "REF**" (at -10 -6 unlocked) (layer "User.1")

@@ -18,7 +18,7 @@ void disable_CC_timing();
 /*! \brief Enable Constant Current Charger timing outputs, effectively turns on CC charger
     \ingroup CC_Charger
 */
-void enable_CC_timing();
+void enable_CC_timing(bool diode_on);
 
 /*! \brief Sets the CC charger clock period, indirectly sets the switching frequency of the CC charger
     \ingroup CC_Charger

@@ -2,6 +2,7 @@
 #include "hardware/pio.h"
 #include "hardware/pwm.h"
 #include "CC_Charger.h"
+#include "hardware/adc.h"
 
 // Our assembled programs:
 #include "CLK.pio.h"
@@ -29,7 +30,6 @@
 
 //Telemetry:
 #define VSENSE_TRIP_PIN 11
-#define CAP_VSENSE_PIN 27
 
 PIO pio;
 
@@ -39,8 +39,8 @@ uint offset_clk, offset_timing;
 uint32_t default_clk_period         = 133;                                                      //3.216usec
 uint32_t default_limit_wait_time    = 185;                                                      //3.024usec
 uint32_t default_limit_on_time      = 7;                                                        //0.136usec
-uint32_t default_blanking_wait_time = 185;                                                       //0.112usec
-uint32_t default_blanking_on_time   = 12;                                                      //3.032usec
+uint32_t default_blanking_wait_time = 185;                                                      //0.112usec
+uint32_t default_blanking_on_time   = 12;                                                       //3.032usec
 
 bool caps_charged = false;
 
@@ -88,7 +88,7 @@ void disable_CC_timing() {
 
 }
 
-void enable_CC_timing() {
+void enable_CC_timing(bool diode_on) {
 
     //Don't start the charger if the caps are already charged
     if(caps_charged == false){
@@ -105,7 +105,7 @@ void enable_CC_timing() {
 
         gpio_put(CC_CHARGER_EN_PIN, true);                                                      //Enable the CC Charger gate driver
 
-        gpio_put(DIODE_ON_PIN, true);                                                           //Turn on the ideal diode
+        gpio_put(DIODE_ON_PIN, diode_on);                                                           //Turn on the ideal diode
     }
 
 }

@@ -117,17 +117,11 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
     gpio_set_irq_enabled(OUTPUT_CURRENT_TRIP_PIN, GPIO_IRQ_EDGE_RISE, false);       //Disable the ignition sense irq
 
-    adc_select_input(1);
-    uint16_t v_cap = adc_read();
-    bool low_v = v_cap < 900;
-    gpio_put(SHORT_ALERT_PIN, low_v);
-    if(low_v)
-        LIMIT_set_timing(97, 7, false);                                             //Limit CC Charger PWM duty cycle to avoid inrush (was 97)
+    LIMIT_set_timing(97, 7, false);                                             //Limit CC Charger PWM duty cycle to avoid inrush (was 97)
 
-    enable_CC_timing(v_cap < 1300);                                                             //Start CC Charger
+    enable_CC_timing(true);                                                             //Start CC Charger
 
-    if(low_v)
-        add_alarm_in_us(15, change_CC_timing, NULL, true);                          //Setup the alarm to correct CC charger timing
+    add_alarm_in_us(15, change_CC_timing, NULL, true);                          //Setup the alarm to correct CC charger timing
     add_alarm_in_us(pulse_off_time-11, begin_on_time, NULL, true);                  //Setup the alarm to turn on the output MOSFET after the off time
 
     pulse_counter -= pulse_history[0] & (uint32_t)0x1;                                          //Subtract the 512th pulse state from the counter

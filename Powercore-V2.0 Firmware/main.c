@@ -2,7 +2,6 @@
 #include "pico/stdlib.h"
 #include "pico/time.h"
 #include "hardware/pwm.h"
-#include "hardware/adc.h"
 
 #include "CC_Charger.h"
 #include "pulse_generator.h"
@@ -12,9 +11,9 @@
 
 //OUTPUT PULSE PARAMETERS (times in usecs)
 #define OUTPUT_ON_TIME 20
-#define OUTPUT_OFF_TIME 80
+#define OUTPUT_OFF_TIME 70
 #define ISO_PULSE false
-#define CAP_VOLTAGE_SETPOINT 70
+#define CAP_VOLTAGE_SETPOINT 65
 
 //CC Charger Parameters (don't change unless you know what you're doing)
 #define CHARGER_CURRENT 850
@@ -64,8 +63,6 @@ void default_gpio_callback(uint gpio, uint32_t event_mask) {
 int main() {
 
     sleep_ms(1000);
-
-    adc_init();
 
     CC_Charger_init(CHARGER_CURRENT, CAP_VOLTAGE_PWM_LEVEL);                                //Setup the CC Charger Outputs
 

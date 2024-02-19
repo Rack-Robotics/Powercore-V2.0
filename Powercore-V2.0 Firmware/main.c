@@ -10,10 +10,11 @@
 #define CUT_nEN_PIN 0
 
 //OUTPUT PULSE PARAMETERS (times in usecs)
-#define OUTPUT_ON_TIME 20
-#define OUTPUT_OFF_TIME 70
-#define ISO_PULSE true
-#define CAP_VOLTAGE_SETPOINT 65
+#define OUTPUT_ON_TIME 32
+#define OUTPUT_OFF_TIME 256
+#define ISO_PULSE false
+#define CAP_VOLTAGE_SETPOINT 70
+#define PULSE_COUNT 30
 
 //CC Charger Parameters (don't change unless you know what you're doing)
 #define CHARGER_CURRENT 850
@@ -37,7 +38,7 @@ bool cut_on_off_irq(repeating_timer_t *rt) {
         if(!gpio_get(CUT_nEN_PIN) && !cutting_enabled) {
 
             cutting_enabled = true;
-            begin_output_pulses(OUTPUT_ON_TIME, OUTPUT_OFF_TIME, ISO_PULSE);
+            begin_output_pulses(OUTPUT_ON_TIME, OUTPUT_OFF_TIME, ISO_PULSE, PULSE_COUNT);
 
         } else if(gpio_get(CUT_nEN_PIN)) { 
 

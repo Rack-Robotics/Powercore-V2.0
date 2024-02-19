@@ -14,7 +14,7 @@ void short_alert_off();
 /*! \brief Start the EDM machine, ie, begin cutting
     \ingroup pulse_generator
 */
-void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse);
+void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse,  uint8_t pulse_count);
 
 /*! \brief Setup pins/dirs for the pulse generator
     \ingroup pulse_generator

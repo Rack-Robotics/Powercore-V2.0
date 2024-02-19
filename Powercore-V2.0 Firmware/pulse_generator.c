@@ -37,6 +37,9 @@ alarm_id_t timeout_alarm_id;
 uint32_t pulse_history[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint32_t pulse_counter = 0;
 
+uint8_t pulses_to_attempt = 0;
+uint8_t pulse_attempt_counter = 0;
+
 //Prototype functions
 int64_t begin_off_time(alarm_id_t id, void *user_data);
 
@@ -82,6 +85,8 @@ int64_t begin_on_time(alarm_id_t id, void *user_data){
 
     if(cutting_enabled) {                                                           //Check that cutting is still enabled
         
+        pulse_attempt_counter += 1;
+
         output_state = WAITING_FOR_IGNITION;                                        //Update pulse generator state
 
         gpio_set_irq_enabled(OUTPUT_CURRENT_TRIP_PIN, GPIO_IRQ_EDGE_RISE, true);    //Configure detection of the spark
@@ -142,7 +147,7 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
     output_state = SPARK_OFF;                                                       //Set state machine state to SPARK_OFF
 
-    if(pulse_counter > 513) {
+    if(pulse_counter > 513 || pulse_attempt_counter >= pulses_to_attempt) {
         cutting_enabled = false;
         short_tripped = true;
         disable_CC_timing();
@@ -171,13 +176,16 @@ void first_off_time(){
 
 }
 
-void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse) {
+void begin_output_pulses(uint32_t on_time, uint32_t off_time, bool iso_pulse, uint8_t pulse_count) {
 
     //Load in the pulse parameters
     pulse_on_time = on_time;
     pulse_off_time = off_time;
     pulse_timeout_time = pulse_on_time / 2;
     iso_pulse_mode = iso_pulse;
+
+    pulses_to_attempt = pulse_count;
+    pulse_attempt_counter = 0;
 
     for (int i = 0; i < 15; i++)
         pulse_history[i] = 0;

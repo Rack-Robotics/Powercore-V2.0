@@ -37,8 +37,6 @@ alarm_id_t timeout_alarm_id;
 uint32_t pulse_history[16] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 uint32_t pulse_counter = 0;
 
-bool tracker = false;
-
 //Prototype functions
 int64_t begin_off_time(alarm_id_t id, void *user_data);
 
@@ -158,7 +156,7 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
 }
 
-int64_t first_off_time(){
+void first_off_time(){
 
     gpio_put(OUTPUT_EN_PIN, false);                                                 //Turn off output MOSFET
 

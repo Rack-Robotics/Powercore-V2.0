@@ -13,7 +13,7 @@
 
 #define CAP_VSENSE_PIN 27
 
-#define SHORT_THRESHOLD 410
+#define SHORT_THRESHOLD 513
 
 bool cutting_enabled = false;
 bool short_tripped = false; 
@@ -142,7 +142,7 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
     output_state = SPARK_OFF;                                                       //Set state machine state to SPARK_OFF
 
-    if(pulse_counter > 513) {
+    if(pulse_counter > SHORT_THRESHOLD) {
         cutting_enabled = false;
         short_tripped = true;
         disable_CC_timing();

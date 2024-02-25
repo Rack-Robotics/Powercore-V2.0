@@ -10,8 +10,8 @@
 #define CUT_nEN_PIN 0
 
 //OUTPUT PULSE PARAMETERS (times in usecs)
-#define OUTPUT_ON_TIME 20
-#define OUTPUT_OFF_TIME 70
+#define OUTPUT_ON_TIME 32
+#define OUTPUT_OFF_TIME 512
 #define ISO_PULSE true
 #define CAP_VOLTAGE_SETPOINT 65
 

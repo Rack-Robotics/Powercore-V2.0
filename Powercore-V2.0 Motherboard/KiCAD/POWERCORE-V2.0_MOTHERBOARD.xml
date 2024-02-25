@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>D:\Users\Dhruv Goel\Documents\EDM Design\Git\Powercore-V2.0\Powercore-V2.0 Motherboard\KiCAD\POWERCORE-V2.0_MOTHERBOARD.kicad_sch</source>
-    <date>1/10/2024 16:36:38</date>
+    <date>2/25/2024 13:52:59</date>
     <tool>Eeschema 7.0.1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -579,6 +579,50 @@
       <property name="ki_description" value="SWITCH, MOMENTARY, DPST, SMT, GULLWING"/>
       <sheetpath names="/MICRO/" tstamps="/c33b2f02-2c72-495f-b3e4-7c2e46cb5275/"/>
       <tstamps>144d955c-20a3-42da-bd26-480e8360efb8</tstamps>
+    </comp>
+    <comp ref="TP7">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_Pad_D1.5mm</footprint>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="Sheetname" value="MICRO"/>
+      <property name="Sheetfile" value="MICRO.kicad_sch"/>
+      <property name="ki_description" value="test point"/>
+      <property name="ki_keywords" value="test point tp"/>
+      <sheetpath names="/MICRO/" tstamps="/c33b2f02-2c72-495f-b3e4-7c2e46cb5275/"/>
+      <tstamps>0591be18-e513-4066-8f6b-da891cd2be10</tstamps>
+    </comp>
+    <comp ref="TP8">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_Pad_D1.5mm</footprint>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="Sheetname" value="MICRO"/>
+      <property name="Sheetfile" value="MICRO.kicad_sch"/>
+      <property name="ki_description" value="test point"/>
+      <property name="ki_keywords" value="test point tp"/>
+      <sheetpath names="/MICRO/" tstamps="/c33b2f02-2c72-495f-b3e4-7c2e46cb5275/"/>
+      <tstamps>772a82c7-7319-4b6c-93f8-3539aba3fff2</tstamps>
+    </comp>
+    <comp ref="TP9">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_Pad_D1.5mm</footprint>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="Sheetname" value="MICRO"/>
+      <property name="Sheetfile" value="MICRO.kicad_sch"/>
+      <property name="ki_description" value="test point"/>
+      <property name="ki_keywords" value="test point tp"/>
+      <sheetpath names="/MICRO/" tstamps="/c33b2f02-2c72-495f-b3e4-7c2e46cb5275/"/>
+      <tstamps>cea4e9f7-ce9f-42b2-b4eb-9dcd2004204b</tstamps>
+    </comp>
+    <comp ref="TP10">
+      <value>TestPoint</value>
+      <footprint>TestPoint:TestPoint_Pad_D1.5mm</footprint>
+      <libsource lib="Connector" part="TestPoint" description="test point"/>
+      <property name="Sheetname" value="MICRO"/>
+      <property name="Sheetfile" value="MICRO.kicad_sch"/>
+      <property name="ki_description" value="test point"/>
+      <property name="ki_keywords" value="test point tp"/>
+      <sheetpath names="/MICRO/" tstamps="/c33b2f02-2c72-495f-b3e4-7c2e46cb5275/"/>
+      <tstamps>258138f4-2473-468f-8f9f-8784d0bfe574</tstamps>
     </comp>
     <comp ref="U2">
       <value>RP2040</value>
@@ -2654,25 +2698,26 @@
       <tstamps>84f39148-de5f-4e75-9b27-a75fcbe5aecc</tstamps>
     </comp>
     <comp ref="D6">
-      <value>V2PM10L-M3/H</value>
-      <footprint>DIODES:DO-220AA (SMP)</footprint>
-      <datasheet>https://www.vishay.com/docs/87463/v2pm10l.pdf</datasheet>
+      <value>SS10PH10-M3/87A</value>
+      <footprint>Package_TO_SOT_SMD:TO-277A</footprint>
+      <datasheet>https://www.vishay.com/docs/89000/ss10ph10.pdf</datasheet>
       <fields>
-        <field name="Current">1.9A</field>
-        <field name="Manufacturer">VISHAY</field>
-        <field name="Part Number">V2PM10L-M3/H</field>
-        <field name="Voltage">100V</field>
+        <field name="If">10A</field>
+        <field name="Manufacturer">Vishay</field>
+        <field name="Part Number">SS10PH10-M3/87A</field>
+        <field name="Vr">100V</field>
       </fields>
-      <libsource lib="SCHOTTKY_DIODES" part="V2PM10L-M3/H" description="DIODE, SCHOTTKY, 100V, 1.9A, DO-220AA"/>
-      <property name="Manufacturer" value="VISHAY"/>
-      <property name="Part Number" value="V2PM10L-M3/H"/>
-      <property name="Voltage" value="100V"/>
-      <property name="Current" value="1.9A"/>
+      <libsource lib="SCHOTTKY_DIODES" part="SS10PH10-M3/87A" description="DIODE, SCHOTTKY, 100V, 10A, TO277A"/>
+      <property name="Vr" value="100V"/>
+      <property name="If" value="10A"/>
+      <property name="Manufacturer" value="Vishay"/>
+      <property name="Part Number" value="SS10PH10-M3/87A"/>
       <property name="Sheetname" value="CHARGER_POWER_STAGE"/>
       <property name="Sheetfile" value="CHARGER_POWER_STAGE.kicad_sch"/>
-      <property name="ki_description" value="DIODE, SCHOTTKY, 100V, 1.9A, DO-220AA"/>
+      <property name="ki_description" value="DIODE, SCHOTTKY, 100V, 10A, TO277A"/>
+      <property name="ki_keywords" value="diode"/>
       <sheetpath names="/CHARGER_POWER_STAGE/" tstamps="/ea1081f5-c3c3-413f-8b88-dc41828804b0/"/>
-      <tstamps>5841eb2e-ed2f-479b-b61c-568d608673fd</tstamps>
+      <tstamps>d3c57c7a-a959-40f6-907a-d3d68165ed1a</tstamps>
     </comp>
     <comp ref="L2">
       <value>22U</value>
@@ -2761,6 +2806,28 @@
       <property name="ki_description" value="TRANSISTOR, MOSFET, DUAL N-CH, 100V"/>
       <sheetpath names="/CHARGER_POWER_STAGE/" tstamps="/ea1081f5-c3c3-413f-8b88-dc41828804b0/"/>
       <tstamps>f54bc34e-45c0-4f25-a03b-7ab564cd342c 93773bec-b990-4d76-8d9c-b0f1e2bc720f</tstamps>
+    </comp>
+    <comp ref="R5">
+      <value>47K0</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf</datasheet>
+      <fields>
+        <field name="Manufacturer">Stackpole</field>
+        <field name="Package Size">0603</field>
+        <field name="Part Number">RMCF0603FT47K0</field>
+        <field name="Tolerance">1%</field>
+      </fields>
+      <libsource lib="0603_RES" part="47K0" description="RES, 47K0, 1%, 0.1W, 0603, SMD"/>
+      <property name="Package Size" value="0603"/>
+      <property name="Tolerance" value="1%"/>
+      <property name="Part Number" value="RMCF0603FT47K0"/>
+      <property name="Manufacturer" value="Stackpole"/>
+      <property name="Sheetname" value="CHARGER_POWER_STAGE"/>
+      <property name="Sheetfile" value="CHARGER_POWER_STAGE.kicad_sch"/>
+      <property name="ki_description" value="RES, 47K0, 1%, 0.1W, 0603, SMD"/>
+      <property name="ki_keywords" value="resistor, 47K0"/>
+      <sheetpath names="/CHARGER_POWER_STAGE/" tstamps="/ea1081f5-c3c3-413f-8b88-dc41828804b0/"/>
+      <tstamps>5add0eff-3009-4bc4-a570-5c53d80b0c71</tstamps>
     </comp>
     <comp ref="R9">
       <value>10K0</value>
@@ -2917,28 +2984,6 @@
       <property name="ki_keywords" value="resistor, 100"/>
       <sheetpath names="/CHARGER_POWER_STAGE/" tstamps="/ea1081f5-c3c3-413f-8b88-dc41828804b0/"/>
       <tstamps>6984e8ef-95e9-496b-8af4-23de0c928b1f</tstamps>
-    </comp>
-    <comp ref="R52">
-      <value>47K0</value>
-      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
-      <datasheet>https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf</datasheet>
-      <fields>
-        <field name="Manufacturer">Stackpole</field>
-        <field name="Package Size">0603</field>
-        <field name="Part Number">RMCF0603FT47K0</field>
-        <field name="Tolerance">1%</field>
-      </fields>
-      <libsource lib="0603_RES" part="47K0" description="RES, 47K0, 1%, 0.1W, 0603, SMD"/>
-      <property name="Package Size" value="0603"/>
-      <property name="Tolerance" value="1%"/>
-      <property name="Part Number" value="RMCF0603FT47K0"/>
-      <property name="Manufacturer" value="Stackpole"/>
-      <property name="Sheetname" value="CHARGER_POWER_STAGE"/>
-      <property name="Sheetfile" value="CHARGER_POWER_STAGE.kicad_sch"/>
-      <property name="ki_description" value="RES, 47K0, 1%, 0.1W, 0603, SMD"/>
-      <property name="ki_keywords" value="resistor, 47K0"/>
-      <sheetpath names="/CHARGER_POWER_STAGE/" tstamps="/ea1081f5-c3c3-413f-8b88-dc41828804b0/"/>
-      <tstamps>691332f2-a9db-436f-9471-b02a341ec3db</tstamps>
     </comp>
     <comp ref="R54">
       <value>2R7</value>
@@ -3940,6 +3985,7 @@
       <property name="Manufacturer" value="Yageo"/>
       <property name="Sheetname" value="SLOPE_GENERATION"/>
       <property name="Sheetfile" value="SLOPE_GENERATION.kicad_sch"/>
+      <property name="dnp"/>
       <property name="ki_description" value="CAP, 27P, 50V, C0G, SMT, 0603"/>
       <sheetpath names="/CONTROLS/SLOPE_GENERATION/" tstamps="/3001503a-30e0-496f-93b8-7d885faa5a16/3dd8b90b-7322-4f7f-b6bc-9ef08340080b/"/>
       <tstamps>08d449dc-96a6-4c84-8d75-4ff5c29fbadb</tstamps>
@@ -4375,46 +4421,46 @@
       <tstamps>5daa4590-9c17-4f8c-8062-1fc1fdfa018b</tstamps>
     </comp>
     <comp ref="R63">
-      <value>4K70</value>
+      <value>47K0</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf</datasheet>
       <fields>
         <field name="Manufacturer">Stackpole</field>
         <field name="Package Size">0603</field>
-        <field name="Part Number">RMCF0603FT4K70</field>
+        <field name="Part Number">RMCF0603FT47K0</field>
         <field name="Tolerance">1%</field>
       </fields>
-      <libsource lib="0603_RES" part="4K70" description="RES, 4K70, 1%, 0.1W, 0603, SMD"/>
+      <libsource lib="0603_RES" part="47K0" description="RES, 47K0, 1%, 0.1W, 0603, SMD"/>
       <property name="Package Size" value="0603"/>
       <property name="Tolerance" value="1%"/>
-      <property name="Part Number" value="RMCF0603FT4K70"/>
+      <property name="Part Number" value="RMCF0603FT47K0"/>
       <property name="Manufacturer" value="Stackpole"/>
       <property name="Sheetname" value="SLOPE_GENERATION"/>
       <property name="Sheetfile" value="SLOPE_GENERATION.kicad_sch"/>
-      <property name="ki_description" value="RES, 4K70, 1%, 0.1W, 0603, SMD"/>
-      <property name="ki_keywords" value="resistor, 470R"/>
+      <property name="ki_description" value="RES, 47K0, 1%, 0.1W, 0603, SMD"/>
+      <property name="ki_keywords" value="resistor, 47K0"/>
       <sheetpath names="/CONTROLS/SLOPE_GENERATION/" tstamps="/3001503a-30e0-496f-93b8-7d885faa5a16/3dd8b90b-7322-4f7f-b6bc-9ef08340080b/"/>
       <tstamps>fad7b2fa-f859-4775-a1d3-181508187051</tstamps>
     </comp>
     <comp ref="R65">
-      <value>1K00</value>
+      <value>100R</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf</datasheet>
       <fields>
         <field name="Manufacturer">Stackpole</field>
         <field name="Package Size">0603</field>
-        <field name="Part Number">RMCF0603FT1K00</field>
+        <field name="Part Number">RMCF0603FT100R</field>
         <field name="Tolerance">1%</field>
       </fields>
-      <libsource lib="0603_RES" part="1K00" description="RES, 1K00, 1%, 0.1W, 0603, SMD"/>
+      <libsource lib="0603_RES" part="100R" description="RES, 100R, 1%, 0.1W, 0603, SMD"/>
       <property name="Package Size" value="0603"/>
       <property name="Tolerance" value="1%"/>
-      <property name="Part Number" value="RMCF0603FT1K00"/>
+      <property name="Part Number" value="RMCF0603FT100R"/>
       <property name="Manufacturer" value="Stackpole"/>
       <property name="Sheetname" value="SLOPE_GENERATION"/>
       <property name="Sheetfile" value="SLOPE_GENERATION.kicad_sch"/>
-      <property name="ki_description" value="RES, 1K00, 1%, 0.1W, 0603, SMD"/>
-      <property name="ki_keywords" value="resistor, 10k"/>
+      <property name="ki_description" value="RES, 100R, 1%, 0.1W, 0603, SMD"/>
+      <property name="ki_keywords" value="resistor, 100"/>
       <sheetpath names="/CONTROLS/SLOPE_GENERATION/" tstamps="/3001503a-30e0-496f-93b8-7d885faa5a16/3dd8b90b-7322-4f7f-b6bc-9ef08340080b/"/>
       <tstamps>7d86564c-a646-42d9-85bc-56c4b06a3070</tstamps>
     </comp>
@@ -4442,45 +4488,45 @@
       <tstamps>d52db0b2-f046-4448-9049-296e880a87d5</tstamps>
     </comp>
     <comp ref="R72">
-      <value>10K0</value>
+      <value>1K00</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf</datasheet>
       <fields>
         <field name="Manufacturer">Stackpole</field>
         <field name="Package Size">0603</field>
-        <field name="Part Number">RMCF0603FT10K0</field>
+        <field name="Part Number">RMCF0603FT1K00</field>
         <field name="Tolerance">1%</field>
       </fields>
-      <libsource lib="0603_RES" part="10K0" description="RES, 10K0, 1%, 0.1W, 0603, SMD"/>
+      <libsource lib="0603_RES" part="1K00" description="RES, 1K00, 1%, 0.1W, 0603, SMD"/>
       <property name="Package Size" value="0603"/>
       <property name="Tolerance" value="1%"/>
-      <property name="Part Number" value="RMCF0603FT10K0"/>
+      <property name="Part Number" value="RMCF0603FT1K00"/>
       <property name="Manufacturer" value="Stackpole"/>
       <property name="Sheetname" value="SLOPE_GENERATION"/>
       <property name="Sheetfile" value="SLOPE_GENERATION.kicad_sch"/>
-      <property name="ki_description" value="RES, 10K0, 1%, 0.1W, 0603, SMD"/>
+      <property name="ki_description" value="RES, 1K00, 1%, 0.1W, 0603, SMD"/>
       <property name="ki_keywords" value="resistor, 10k"/>
       <sheetpath names="/CONTROLS/SLOPE_GENERATION/" tstamps="/3001503a-30e0-496f-93b8-7d885faa5a16/3dd8b90b-7322-4f7f-b6bc-9ef08340080b/"/>
       <tstamps>806eea9f-8e7b-4594-8086-4825a8bad60c</tstamps>
     </comp>
     <comp ref="R73">
-      <value>10K0</value>
+      <value>1K00</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <datasheet>https://www.seielect.com/Catalog/SEI-RMCF_RMCP.pdf</datasheet>
       <fields>
         <field name="Manufacturer">Stackpole</field>
         <field name="Package Size">0603</field>
-        <field name="Part Number">RMCF0603FT10K0</field>
+        <field name="Part Number">RMCF0603FT1K00</field>
         <field name="Tolerance">1%</field>
       </fields>
-      <libsource lib="0603_RES" part="10K0" description="RES, 10K0, 1%, 0.1W, 0603, SMD"/>
+      <libsource lib="0603_RES" part="1K00" description="RES, 1K00, 1%, 0.1W, 0603, SMD"/>
       <property name="Package Size" value="0603"/>
       <property name="Tolerance" value="1%"/>
-      <property name="Part Number" value="RMCF0603FT10K0"/>
+      <property name="Part Number" value="RMCF0603FT1K00"/>
       <property name="Manufacturer" value="Stackpole"/>
       <property name="Sheetname" value="SLOPE_GENERATION"/>
       <property name="Sheetfile" value="SLOPE_GENERATION.kicad_sch"/>
-      <property name="ki_description" value="RES, 10K0, 1%, 0.1W, 0603, SMD"/>
+      <property name="ki_description" value="RES, 1K00, 1%, 0.1W, 0603, SMD"/>
       <property name="ki_keywords" value="resistor, 10k"/>
       <sheetpath names="/CONTROLS/SLOPE_GENERATION/" tstamps="/3001503a-30e0-496f-93b8-7d885faa5a16/3dd8b90b-7322-4f7f-b6bc-9ef08340080b/"/>
       <tstamps>8b61eac8-8875-4971-bcd1-bc02167e28c1</tstamps>
@@ -4502,6 +4548,7 @@
       <property name="Manufacturer" value="Stackpole"/>
       <property name="Sheetname" value="SLOPE_GENERATION"/>
       <property name="Sheetfile" value="SLOPE_GENERATION.kicad_sch"/>
+      <property name="dnp"/>
       <property name="ki_description" value="RES, 10K0, 1%, 0.1W, 0603, SMD"/>
       <property name="ki_keywords" value="resistor, 10k"/>
       <sheetpath names="/CONTROLS/SLOPE_GENERATION/" tstamps="/3001503a-30e0-496f-93b8-7d885faa5a16/3dd8b90b-7322-4f7f-b6bc-9ef08340080b/"/>
@@ -6024,7 +6071,7 @@
     </net>
     <net code="15" name="/CHARGER_POWER_STAGE/VS_DIODE">
       <node ref="C64" pin="2" pintype="passive"/>
-      <node ref="D6" pin="1" pinfunction="K" pintype="passive"/>
+      <node ref="D6" pin="3" pinfunction="K" pintype="passive"/>
       <node ref="Q10" pin="3" pinfunction="D" pintype="passive"/>
       <node ref="Q9" pin="3" pinfunction="S" pintype="passive"/>
       <node ref="R24" pin="2" pintype="passive"/>
@@ -6070,11 +6117,13 @@
       <node ref="J6" pin="A7" pinfunction="D-" pintype="bidirectional"/>
       <node ref="J6" pin="B7" pinfunction="D-" pintype="bidirectional"/>
       <node ref="R66" pin="1" pintype="passive"/>
+      <node ref="TP8" pin="1" pinfunction="1" pintype="passive"/>
     </net>
     <net code="25" name="/CONNECTORS/USB_D_P">
       <node ref="J6" pin="A6" pinfunction="D+" pintype="bidirectional"/>
       <node ref="J6" pin="B6" pinfunction="D+" pintype="bidirectional"/>
       <node ref="R44" pin="1" pintype="passive"/>
+      <node ref="TP7" pin="1" pinfunction="1" pintype="passive"/>
     </net>
     <net code="26" name="/CONTROLS/CC_CLK">
       <node ref="R45" pin="1" pintype="passive"/>
@@ -6089,7 +6138,7 @@
     </net>
     <net code="28" name="/CONTROLS/CC_I_LIMIT_PWM">
       <node ref="R30" pin="1" pintype="passive"/>
-      <node ref="U2" pin="16" pinfunction="GPIO13" pintype="bidirectional"/>
+      <node ref="U2" pin="18" pinfunction="GPIO15" pintype="bidirectional"/>
     </net>
     <net code="29" name="/CONTROLS/CC_PWM_nEN">
       <node ref="R49" pin="1" pintype="passive"/>
@@ -6099,7 +6148,7 @@
     <net code="30" name="/CONTROLS/CC_SLOPE_BLANKING">
       <node ref="R10" pin="1" pintype="passive"/>
       <node ref="R7" pin="1" pintype="passive"/>
-      <node ref="U2" pin="18" pinfunction="GPIO15" pintype="bidirectional"/>
+      <node ref="U2" pin="16" pinfunction="GPIO13" pintype="bidirectional"/>
     </net>
     <net code="31" name="/CONTROLS/CURRENT_TRIP">
       <node ref="U13" pin="1" pintype="output"/>
@@ -6107,7 +6156,7 @@
     </net>
     <net code="32" name="/CONTROLS/OUTPUT_CURRENT_TRIP">
       <node ref="R15" pin="1" pintype="passive"/>
-      <node ref="U2" pin="13" pinfunction="GPIO10" pintype="bidirectional"/>
+      <node ref="U2" pin="14" pinfunction="GPIO11" pintype="bidirectional"/>
     </net>
     <net code="33" name="/CONTROLS/OUTPUT_ISENSE_MICRO">
       <node ref="R67" pin="2" pintype="passive"/>
@@ -6133,7 +6182,7 @@
     </net>
     <net code="37" name="/CONTROLS/SPARK_THRESHOLD_PWM">
       <node ref="R11" pin="1" pintype="passive"/>
-      <node ref="U2" pin="17" pinfunction="GPIO14" pintype="bidirectional"/>
+      <node ref="U2" pin="13" pinfunction="GPIO10" pintype="bidirectional"/>
     </net>
     <net code="38" name="/CONTROLS/VSENSE_BUFFERED">
       <node ref="R47" pin="2" pintype="passive"/>
@@ -6144,7 +6193,7 @@
       <node ref="U7" pin="5" pinfunction="+" pintype="input"/>
     </net>
     <net code="39" name="/CONTROLS/VSENSE_TRIP">
-      <node ref="U2" pin="14" pinfunction="GPIO11" pintype="bidirectional"/>
+      <node ref="U2" pin="15" pinfunction="GPIO12" pintype="bidirectional"/>
       <node ref="U5" pin="2" pintype="input"/>
       <node ref="U7" pin="7" pintype="open_collector"/>
     </net>
@@ -6155,7 +6204,7 @@
     </net>
     <net code="41" name="/CONTROLS/V_CAP_SET_PWM">
       <node ref="R31" pin="1" pintype="passive"/>
-      <node ref="U2" pin="15" pinfunction="GPIO12" pintype="bidirectional"/>
+      <node ref="U2" pin="17" pinfunction="GPIO14" pintype="bidirectional"/>
     </net>
     <net code="42" name="/CONTROLS/V_SENSE_FILTERED">
       <node ref="C2" pin="1" pintype="passive"/>
@@ -6282,6 +6331,7 @@
       <node ref="C95" pin="2" pintype="passive"/>
       <node ref="D20" pin="1" pinfunction="A" pintype="passive"/>
       <node ref="D20" pin="2" pinfunction="A" pintype="passive"/>
+      <node ref="D6" pin="1" pinfunction="A" pintype="passive"/>
       <node ref="D6" pin="2" pinfunction="A" pintype="passive"/>
       <node ref="J1" pin="1" pinfunction="1" pintype="unspecified"/>
       <node ref="J1" pin="3" pinfunction="3" pintype="unspecified"/>
@@ -6311,7 +6361,7 @@
       <node ref="R39" pin="2" pintype="passive"/>
       <node ref="R41" pin="2" pintype="passive"/>
       <node ref="R46" pin="2" pintype="passive"/>
-      <node ref="R52" pin="2" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
       <node ref="R54" pin="2" pintype="passive"/>
       <node ref="R57" pin="2" pintype="passive"/>
       <node ref="R59" pin="2" pintype="passive"/>
@@ -6329,6 +6379,7 @@
       <node ref="R94" pin="1" pintype="passive"/>
       <node ref="R97" pin="1" pintype="passive"/>
       <node ref="SW1" pin="1" pinfunction="1" pintype="passive"/>
+      <node ref="TP10" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="TP3" pin="1" pinfunction="1" pintype="passive"/>
       <node ref="U1" pin="2" pinfunction="G" pintype="power_in"/>
       <node ref="U10" pin="2" pinfunction="GND" pintype="passive"/>
@@ -6529,6 +6580,7 @@
     <net code="90" name="Net-(R100-Pad2)">
       <node ref="R100" pin="2" pintype="passive"/>
       <node ref="SW1" pin="2" pinfunction="2" pintype="passive"/>
+      <node ref="TP9" pin="1" pinfunction="1" pintype="passive"/>
     </net>
     <net code="91" name="Net-(U3-C)">
       <node ref="R45" pin="2" pintype="passive"/>
@@ -6574,7 +6626,7 @@
       <node ref="U8" pin="10" pinfunction="LO" pintype="output"/>
     </net>
     <net code="101" name="Net-(U8-RDT)">
-      <node ref="R52" pin="1" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
       <node ref="U8" pin="6" pinfunction="RDT" pintype="passive"/>
     </net>
     <net code="102" name="Net-(U9-BST)">

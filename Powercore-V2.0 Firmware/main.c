@@ -12,7 +12,7 @@
 //OUTPUT PULSE PARAMETERS (times in usecs)
 #define OUTPUT_ON_TIME 32
 #define OUTPUT_OFF_TIME 512
-#define ISO_PULSE true
+#define ISO_PULSE false
 #define CAP_VOLTAGE_SETPOINT 65
 
 //CC Charger Parameters (don't change unless you know what you're doing)

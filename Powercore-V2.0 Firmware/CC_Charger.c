@@ -13,7 +13,7 @@
 //CC_Charger Timing:
 #define CLK_PIN 6
 #define LIMIT_PIN 9
-#define BLANKING_PIN 15
+#define BLANKING_PIN 13
 
 //CC_Charger Control:
 #define CC_CHARGER_EN_PIN 5
@@ -25,11 +25,11 @@
 #define GATE_BIAS_CLK_PIN 3
 
 //PWM Voltage Sets:
-#define CC_I_LIMIT_PIN 13
-#define V_CAP_SET_PIN 12
+#define CC_I_LIMIT_PIN 15
+#define V_CAP_SET_PIN 14
 
 //Telemetry:
-#define VSENSE_TRIP_PIN 11
+#define VSENSE_TRIP_PIN 12
 
 PIO pio;
 

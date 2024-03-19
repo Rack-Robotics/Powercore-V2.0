@@ -5,11 +5,9 @@
 #include "hardware/adc.h"
 
 #define OUTPUT_EN_PIN 2
-#define OUTPUT_CURRENT_TRIP_PIN 10
-#define SPARK_THRESHOLD_PWM_PIN 14
+#define OUTPUT_CURRENT_TRIP_PIN 11
+#define SPARK_THRESHOLD_PWM_PIN 10
 #define SHORT_ALERT_PIN 1
-
-#define PULSE_COUNTER_PWM_PIN 24
 
 #define CAP_VSENSE_PIN 27
 
@@ -150,8 +148,6 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
         gpio_put(SHORT_ALERT_PIN, true);
     }
 
-    pwm_set_gpio_level(PULSE_COUNTER_PWM_PIN, pulse_counter<<2);
-
     return 0;
 
 }
@@ -205,11 +201,6 @@ void pulse_generator_init(uint32_t trip_current) {
     pwm_set_gpio_level(SPARK_THRESHOLD_PWM_PIN, trip_current);
 
     pwm_set_enabled(pwm_gpio_to_slice_num(SPARK_THRESHOLD_PWM_PIN), true);
-
-    gpio_set_function(PULSE_COUNTER_PWM_PIN, GPIO_FUNC_PWM);
-    pwm_set_wrap(pwm_gpio_to_slice_num(PULSE_COUNTER_PWM_PIN), 2500);
-
-    pwm_set_enabled(pwm_gpio_to_slice_num(PULSE_COUNTER_PWM_PIN), true);
 
     gpio_add_raw_irq_handler(OUTPUT_CURRENT_TRIP_PIN, &output_current_trip_irq);
 

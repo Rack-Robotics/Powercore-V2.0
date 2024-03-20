@@ -43,6 +43,7 @@ bool cut_on_off_irq(repeating_timer_t *rt) {
 
             cutting_enabled = false;
             disable_gate_driver();
+            short_alert_off();
 
         }
 

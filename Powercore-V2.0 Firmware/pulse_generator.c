@@ -49,7 +49,7 @@ int64_t change_CC_timing(alarm_id_t id, void *user_data){
 
 void short_alert_off() {
 
-    gpio_put(SHORT_ALERT_PIN, false);
+    pwm_set_gpio_level(SHORT_ALERT_PIN, 0);
 
 }
 
@@ -145,7 +145,9 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
         short_tripped = true;
         disable_CC_timing();
         disable_gate_driver();
-        gpio_put(SHORT_ALERT_PIN, true);
+        pwm_set_gpio_level(SHORT_ALERT_PIN, 512);
+    }else {
+        pwm_set_gpio_level(SHORT_ALERT_PIN, pulse_counter);
     }
 
     return 0;
@@ -191,8 +193,13 @@ void pulse_generator_init(uint32_t trip_current) {
     gpio_init(OUTPUT_CURRENT_TRIP_PIN);
     gpio_set_dir(OUTPUT_CURRENT_TRIP_PIN, GPIO_IN);
 
-    gpio_init(SHORT_ALERT_PIN);
-    gpio_set_dir(SHORT_ALERT_PIN, GPIO_OUT);
+    gpio_set_function(SHORT_ALERT_PIN, GPIO_FUNC_PWM);
+
+    pwm_set_wrap(pwm_gpio_to_slice_num(SHORT_ALERT_PIN), 512);
+
+    pwm_set_gpio_level(SHORT_ALERT_PIN, 0);
+
+    pwm_set_enabled(pwm_gpio_to_slice_num(SHORT_ALERT_PIN), true);
 
     gpio_set_function(SPARK_THRESHOLD_PWM_PIN, GPIO_FUNC_PWM);
 

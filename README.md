@@ -1,6 +1,7 @@
 # Powercore V2.0
 
-## 1. Overview of the Project
+## Overview
+<img src="images/powercore_front.webp" alt="Powercore Front View" width="500" />
 The Powercore V2.0 is an open-source wire EDM (electrical discharge machining) power supply developed by Rack Robotics. It aims to provide a cost-effective and easily replicable solution for wire EDM enthusiasts and professionals. The project includes detailed electrical schematics, firmware, and CAD models. This EDM power supply (spark generator) is intedned to be used on custom wire EDM and plunge EDM machines. 
 
 # Hardware Specifications
@@ -42,8 +43,8 @@ EDM can errode any conductive material. The rate of EDM (Electrical Discharge Ma
 Yes. Gap control is highly recommended for sinker/plunge applications. In plunge/sink EDM, gap control is critical for maintaining machining stability. The gap, or spark gap, is the small space between the electrode and the workpiece. Proper gap control ensures consistent sparking conditions, preventing short circuits and arcing that can damage the workpiece and electrode. It also aids in efficient debris removal, cooling, and flushing of the dielectric fluid, which are essential for maintaining a smooth surface finish and achieving high-accuracy machining. Without precise gap control, the machining process can become unstable, leading to poor-quality results and increased wear on the electrodes. The Powercore V2.0 has a current sense and short alert output port to assist the user in thier implementation. 
 
 
-## 2. Operation of the Powercore
-<img src="images/powercore_front.webp" alt="Powercore Front View" width="500" />
+## Operation
+<img src="images/powercore_font_ports .png" alt="Powercore Front View" width="1000" />
 
 **POWER Port**
 
@@ -65,13 +66,18 @@ The Powercore V2.0 features an "enable port" that ensures safety by requiring ac
 
 A type-C USB port provides communication with the on-board RP2040 micronctroller and flash memory. Pressing the reset button (the pin-hole located between the ‘AMP’ and ‘EN’ ports) during power-up initiates the USB bootloader mode, allowing access to the flash memory. When the reset button is held down while powering up, the RP2040 enters a special state where it presents itself as a mass storage device to a connected computer. This enables users to drag and drop firmware files directly into the flash memory, facilitating easy updates and modifications without needing additional programming tools or interfaces. 
 
-## 3. Best Practices During Operation
+## Best_Practices
 
+- Avoid short circuits. A short circuit occurs when the POWER port outputs short together. This may happen if wiring is incorrect, or the cutting electrode collides with the work. A prolonged short circuit can damage the Powercore.
+- Twist the output power cable pairs together. Twisting the positive and negative output conductors together dramatically reduces EMI, and improves the cutting efficiency of the device. Output cables come twisted from Rack Robotics.
+- When integrating the Powercore V2.0 into a wire EDM build, ensure that the EN port fails to an off default state during machine shutoff.
+  
+⚠ Avoid touching the electrodes and workpiece during operation to prevent exposure to high-voltage DC (65V). Additionally, individuals with pacemakers or similar medical devices should not operate the Powercore, as the high-voltage environment could interfere with their functionality. 
 
-## 4. Hardware Overview
+## Hardware Overview
 
+# Theory of Operation 
 
-## 5. Firmware Overview
+## Firmware Overview
 
-
-## 6. Legal
+## 6. Legal & License

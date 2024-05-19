@@ -55,7 +55,7 @@ Yes. Gap control is highly recommended for sinker/plunge applications. In plunge
 |**EN**| The Powercore V2.0 features an "enable port" that ensures safety by requiring activation before the device outputs EDM waveforms. When the Powercore is plugged in, it remains inactive until the enable port receives a DC voltage between **5V and 36V**. This port draws minimal current. The enable port can be connected to GPIO, motor, heater, or LED ports on a 3D printer or CNC control board, or controlled manually with a switch. *To prevent damage*, avoid disconnecting the main AC power while the enable port is active.|
 |**USB**| A type-C USB port provides communication with the on-board RP2040 micronctroller and flash memory. Pressing the reset button (the pin-hole located between the ‘AMP’ and ‘EN’ ports) during power-up initiates the USB bootloader mode, allowing access to the flash memory. When the reset button is held down while powering up, the RP2040 enters a special state where it presents itself as a mass storage device to a connected computer. This enables users to drag and drop firmware files directly into the flash memory, facilitating easy updates and modifications without needing additional programming tools or interfaces.|
 
-<img align="left" src="images/powercore_v2.0_front_ports_with_polarity_indicators.png" alt="Powercore Front View" width="800" />
+<img src="images/powercore_v2.0_front_ports_with_polarity_indicators.png" alt="Powercore Front View" width="800" />
 
 **Best_Practices**
 

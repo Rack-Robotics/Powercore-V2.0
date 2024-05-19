@@ -44,7 +44,7 @@ Yes. Gap control is highly recommended for sinker/plunge applications. In plunge
 
 
 ## Operation
-<img src="images/powercore_font_ports .png" alt="Powercore Front View" width="1000" />
+<img src="images/powercore_front_ports.png" alt="Powercore Front View" width="1000" />
 
 **POWER Port**
 

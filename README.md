@@ -1,8 +1,8 @@
 # Powercore V2.0
 
-The Powercore V2.0 is an open-source wire EDM (electrical discharge machining) power supply developed by Rack Robotics. It aims to provide a cost-effective and easily replicable solution for wire EDM enthusiasts and professionals. The project includes detailed electrical schematics, firmware, and CAD models. This EDM power supply (spark generator) is intended to be used on custom wire EDM and plunge EDM machines. This porject is open-source, to encourage collaboration and innovation within the wire EDM community.
-
 <img align="left" src="images/powercore_front.webp" alt="Powercore Front View" width="500" /> 
+
+The Powercore V2.0 is an open-source wire EDM (electrical discharge machining) power supply developed by Rack Robotics. It aims to provide a cost-effective and easily replicable solution for wire EDM enthusiasts and professionals. The project includes detailed electrical schematics, firmware, and CAD models. This EDM power supply (spark generator) is intended to be used on custom wire EDM and plunge EDM machines. This porject is open-source, to encourage collaboration and innovation within the wire EDM community.
 
 | Powercore V2.0 Specification    | Value                    |
 |---------------------------------|--------------------------|

@@ -77,7 +77,9 @@ The Powercore V2.0 motherboard delivers parametric pulsed DC through the repeate
 
 **Motherboard**
 
-<img align="left" src="images/powercore_v2.0_motherboard.png" alt="Powercore Front View" width="600" />
+<img src="images/powercore_v2.0_motherboard.png" alt="Powercore Front View" width="600" />
+
+The motherboard contains multiple functional blocks: 
 
 - RP2040 Microcontroller with 16Mbit of FLASH Memory
 - EMI Filter

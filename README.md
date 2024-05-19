@@ -6,7 +6,9 @@ The Powercore V2.0 is an open-source wire EDM (electrical discharge machining) p
 
 This porject is open-source, to encourage collaboration and innovation within the wire EDM community.
 
-| Powercore V2.0 Specification    | Value                    |
+## Powercore V2.0 Specifications
+
+| Specification    | Value                    |
 |---------------------------------|--------------------------|
 | Typical Input Power             | 200 Watts                |
 | Input Voltage                   | 90-264 VAC               |

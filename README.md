@@ -22,7 +22,7 @@ This porject is open-source, to encourage collaboration and innovation within th
 - Firmare optimized for stable wire EDM opperation
 - Up to 180 Watts EDM Power Output (Output Port)
 - Up to 18 mJ per EDM spark
-- Up to 10 kHz Maximum EDM Pulse Frequency
+- 2 KHz EDM cutting with factory firmware
 - Dual-core RP2040 Microcontroller up to 133 MHz (USB Port)
 - Real-Time Current Sensing Telemetry (AMP Port) 
 - Real-Time Spark Ignition Telemetry (ALRT Port) 

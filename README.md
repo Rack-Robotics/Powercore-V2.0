@@ -99,6 +99,12 @@ The motherboard contains multiple functional blocks:
 ## Firmware Overview
 Work in Progress
 
+## Safety
+
+DANGER The Powercore V2.0 operates at a potentially hazardous voltage of 65 - 72 VDC, and supplies high-power waveforms
+
+Improper use of the Powercore can increase radiated emission levels. These intrinsic properties of EDM necessitate operator care and supervision. Touching the workpiece or electrode(s) during EDM operation exposes the may expose the user to 65 - 72 VDC high-voltage. Individuals with pacemakers or similar medical devices should not operate the Powercore, as the high-voltage environment could interfere with their functionality. Ensure that proper measures are taken against EMI. Routing of EDM power through unshielded/twisted cables not recommended. Unshielded/twisted cables function as antennas, which will radiate emissions into the nearby 
+
 ## 6. Legal & License
 
 Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]

@@ -11,7 +11,7 @@
 
 #define CAP_VSENSE_PIN 27
 
-#define SHORT_THRESHOLD 513
+#define SHORT_THRESHOLD 461
 
 bool cutting_enabled = false;
 bool short_tripped = false; 
@@ -106,6 +106,28 @@ int64_t begin_on_time(alarm_id_t id, void *user_data){
 
 }
 
+int64_t begin_charging(alarm_id_t id, void *user_data){
+    
+    if(pulse_counter > SHORT_THRESHOLD) {
+        cutting_enabled = false;
+        short_tripped = true;
+        disable_CC_timing();
+        disable_gate_driver();
+        pwm_set_gpio_level(SHORT_ALERT_PIN, 512);
+    }else if(cutting_enabled == true){
+        pwm_set_gpio_level(SHORT_ALERT_PIN, pulse_counter);
+    
+
+        LIMIT_set_timing(97, 7, false);                                             //Limit CC Charger PWM duty cycle to avoid inrush (was 97)
+
+        enable_CC_timing(true);                                                             //Start CC Charger
+
+        add_alarm_in_us(15, change_CC_timing, NULL, true);                          //Setup the alarm to correct CC charger timing
+        add_alarm_in_us(pulse_off_time-26, begin_on_time, NULL, true);                  //Setup the alarm to turn on the output MOSFET after the off time
+    }
+
+    return 0;
+}
 
 int64_t begin_off_time(alarm_id_t id, void *user_data){
 
@@ -113,12 +135,7 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
 
     gpio_set_irq_enabled(OUTPUT_CURRENT_TRIP_PIN, GPIO_IRQ_EDGE_RISE, false);       //Disable the ignition sense irq
 
-    LIMIT_set_timing(97, 7, false);                                             //Limit CC Charger PWM duty cycle to avoid inrush (was 97)
-
-    enable_CC_timing(true);                                                             //Start CC Charger
-
-    add_alarm_in_us(15, change_CC_timing, NULL, true);                          //Setup the alarm to correct CC charger timing
-    add_alarm_in_us(pulse_off_time-11, begin_on_time, NULL, true);                  //Setup the alarm to turn on the output MOSFET after the off time
+    add_alarm_in_us(15, begin_charging, NULL, true);
 
     pulse_counter -= pulse_history[0] & (uint32_t)0x1;                                          //Subtract the 512th pulse state from the counter
 
@@ -139,16 +156,6 @@ int64_t begin_off_time(alarm_id_t id, void *user_data){
     }
 
     output_state = SPARK_OFF;                                                       //Set state machine state to SPARK_OFF
-
-    if(pulse_counter > SHORT_THRESHOLD) {
-        cutting_enabled = false;
-        short_tripped = true;
-        disable_CC_timing();
-        disable_gate_driver();
-        pwm_set_gpio_level(SHORT_ALERT_PIN, 512);
-    }else {
-        pwm_set_gpio_level(SHORT_ALERT_PIN, pulse_counter);
-    }
 
     return 0;
 

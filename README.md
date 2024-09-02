@@ -4,7 +4,7 @@
 
 The Powercore V2.0 is an open-source wire EDM (electrical discharge machining) power supply developed by Rack Robotics. It aims to provide a cost-effective and easily replicable solution for wire EDM enthusiasts and professionals. The project includes detailed electrical schematics, firmware, and CAD models. This EDM power supply (spark generator) is intended to be used on custom wire EDM and plunge EDM machines. 
 
-This porject is open-source, to encourage collaboration and innovation within the wire EDM community.
+This project is open-source, to encourage collaboration and innovation within the wire EDM community.
 
 ## Powercore V2.0 Specifications
 
@@ -19,7 +19,7 @@ This porject is open-source, to encourage collaboration and innovation within th
 | Physical Dimensions (XYZ)       | 97 x 224 x 79.5 (mm)     |
 
 ## Features 
-- Firmare optimized for stable wire EDM opperation
+- Firmware optimized for stable wire EDM operation
 - Up to 180 Watts EDM Power Output (Output Port)
 - Up to 18 mJ per EDM spark
 - 2 KHz EDM cutting with factory firmware
@@ -31,7 +31,7 @@ This porject is open-source, to encourage collaboration and innovation within th
 ## FAQ
 **Can this cut X material?**
 
-EDM can errode any conductive material. The rate of EDM (Electrical Discharge Machining) machining, also known as spark erosion, is significantly influenced by the thickness, melting point, and density of the material being worked on. Thicker materials generally require more time to erode due to the increased volume that must be removed. Materials with a higher melting point also slow down the machining rate as more energy is required to melt and vaporize the material at the spark point. Additionally, denser materials resist erosion more effectively, requiring more discharge energy to achieve the same material removal rate as less dense materials. Example feedrates are provided bellow, for 0.3 mm diameter zinc-coated, hard brass wire.
+EDM can erode any conductive material. The rate of EDM (Electrical Discharge Machining) machining, also known as spark erosion, is significantly influenced by the thickness, melting point, and density of the material being worked on. Thicker materials generally require more time to erode due to the increased volume that must be removed. Materials with a higher melting point also slow down the machining rate as more energy is required to melt and vaporize the material at the spark point. Additionally, denser materials resist erosion more effectively, requiring more discharge energy to achieve the same material removal rate as less dense materials. Example feedrates are provided bellow, for 0.3 mm diameter zinc-coated, hard brass wire.
 
 | Material                        | Example Feedrate         |
 |---------------------------------|--------------------------|
@@ -42,7 +42,7 @@ EDM can errode any conductive material. The rate of EDM (Electrical Discharge Ma
 
 **Can the Powercore V2.0 be used for sinker/plunge EDM?**
 
-Yes. Gap control is highly recommended for sinker/plunge applications. In plunge/sink EDM, gap control is critical for maintaining machining stability. The gap, or spark gap, is the small space between the electrode and the workpiece. Proper gap control ensures consistent sparking conditions, preventing short circuits and arcing that can damage the workpiece and electrode. It also aids in efficient debris removal, cooling, and flushing of the dielectric fluid, which are essential for maintaining a smooth surface finish and achieving high-accuracy machining. Without precise gap control, the machining process can become unstable, leading to poor-quality results and increased wear on the electrodes. The Powercore V2.0 has a current sense and short alert output port to assist the user in thier implementation. 
+Yes. Gap control is highly recommended for sinker/plunge applications. In plunge/sink EDM, gap control is critical for maintaining machining stability. The gap, or spark gap, is the small space between the electrode and the workpiece. Proper gap control ensures consistent sparking conditions, preventing short circuits and arcing that can damage the workpiece and electrode. It also aids in efficient debris removal, cooling, and flushing of the dielectric fluid, which are essential for maintaining a smooth surface finish and achieving high-accuracy machining. Without precise gap control, the machining process can become unstable, leading to poor-quality results and increased wear on the electrodes. The Powercore V2.0 has a current sense and short alert output port to assist the user in their implementation. 
 
 
 ## IO Ports
@@ -92,7 +92,7 @@ The motherboard contains multiple functional blocks:
 - Peak Capacitor Voltage Trigger
 - Constant Current PWM Generator
 - Constant Current Limit Compensator & Slope Generator
-- Output Curretn Sensor
+- Output Current Sensor
 - Charger Power Stage
 - Output Stage
 
